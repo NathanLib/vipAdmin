@@ -21,34 +21,35 @@ body {
     color:#fff;
 }
 
-.menu_haut {background-color:#000;color:#fff;margin-top:-13px;width:100%;}
+.menu_haut {
+    background-color:#000;color:#fff;margin-top:-13px;width:100%;
+}
 .menu_haut ul {
-	width:100%;
-	text-align:center;
-	height:30px;
-	margin-left:-50px;
-	margin-right:-50px;
-	}
+    width:100%;
+    text-align:center;
+    height:30px;
+    margin-left:-50px;
+    margin-right:-50px;
+}
 .menu_haut li {
-	text-decoration:none;
-	font-weight:bold;
-	display:inline;
-	font-size:14px;
-	padding:10px 10px 10px 10px;
-	color:#fff;
-	}
+    text-decoration:none;
+    font-weight:bold;
+    display:inline;
+    font-size:14px;
+    padding:10px 10px 10px 10px;
+    color:#fff;
+}
 .menu_haut li a {
-	color: #fff;
-	text-decoration: none;
-	display: inline;
-	height: 100%;
-	border: 0 none;
+    color: #fff;
+    text-decoration: none;
+    display: inline;
+    height: 100%;
+    border: 0 none;
 }
 .menu_haut li a:hover {
-	color:#000;
-	background:#eee;
+    color:#000;
+    background:#eee;
 }
-
 .monBody #contenu {
     padding:20px;
     overflow: auto;
@@ -60,12 +61,14 @@ body {
     height:150px;
     background:url(/image/footer.jpg) no-repeat;
 }
-.baniere{float:left;
-  margin-top:20px;
-  margin-left:5px;
-  border:none;}
+.baniere{
+    float:left;
+    margin-top:20px;
+    margin-left:5px;
+    border:none;
+}
 .baniere img{
-  border:none;
+    border:none;
 }
 
 #LogoNode {
@@ -79,5 +82,116 @@ a  {
 }
 
 .traitVertical {
-  border-left: 1px white solid;
+    border-left: 1px white solid;
+}
+
+
+/******************************************************************************/
+/********************************* My Own Css *********************************/
+/******************************************************************************/
+
+/* Page menuVips.handlbars */
+.menuVips {
+    background-color: black;
+    width: 150px;
+    float: left;
+    border-radius: 10px;
+}
+.img_menuVips {
+    padding: 10px 15px;
+}
+.selection_menuVips div {
+    padding: 10px 15px;
+    border-top: solid white thin;
+}
+.selection_menuVips div a {
+    color: white;
+}
+
+/* Page ajoutVips.handlebars */
+.formulaire_vips {
+    width: 1000px;
+    float: right;
+    text-align: left;
+}
+.formulaire_vips fieldset > div {
+    display: flex;
+    margin: 20px 10px;
+}
+.formulaire_vips fieldset > div > div {
+    width: 175px;
+}
+.formulaire_vips fieldset > div > div p {
+    margin: 0;
+}
+/**********/
+.input_commentaire_ajout_vip textarea {
+    max-width: 750px;
+    max-height: 250px;
+}
+.parcours_input_image_ajout_vip {
+    display: flex;
+}
+.parcours_input_image_ajout_vip button {
+    margin: 0 10px;
+}
+.sujets_input_image_ajout_vip, .commentaire_input_image_ajout_vip {
+    margin-top: 10px;
+}
+.commentaire_input_image_ajout_vip textarea {
+    max-width: 750px;
+    max-height: 250px;
+}
+
+
+/* Page menuPhotos.handlbars */
+.menuPhotos {
+    background-color: black;
+    width: 150px;
+    float: left;
+    border-radius: 10px;
+}
+.img_menuPhotos {
+    padding: 10px 15px;
+}
+.selection_menuPhotos div {
+    padding: 10px 15px;
+    border-top: solid white thin;
+}
+.selection_menuPhotos div a {
+    color: white;
+}
+
+.formulaire_photos {
+    width: 1000px;
+    float: right;
+    text-align: left;
+}
+.formulaire_photos fieldset > div {
+    display: flex;
+    margin: 20px 10px;
+}
+.formulaire_photos fieldset > div > div {
+    width: 175px;
+}
+.formulaire_photos fieldset > div > div p {
+    margin: 0;
+}
+/********/
+.input_parcours_image_ajout_photos {
+    display: flex;
+}
+.input_parcours_image_ajout_photos button {
+    margin: 0 10px;
+}
+.commentaire_image_ajout_photos textarea {
+    max-width: 750px;
+    max-height: 250px;
+}
+.btn_ajout_photo, .btn_validation_ajout, .btn_annulation_ajout {
+    justify-content: center;
+}
+.btn_validation_ajout, .btn_annulation_ajout {
+    margin: 0 20px;
+    width: inherit !important;
 }

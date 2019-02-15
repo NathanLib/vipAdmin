@@ -1,25 +1,22 @@
 let HomeController = require('./../controllers/HomeController');
 let VipController = require('./../controllers/VipController');
-let AlbumController = require('./../controllers/AlbumController');
-let TestController = require('./../controllers/TestController');
-
-
+let PhotosController = require('./../controllers/PhotosController');
 
 // Routes
 module.exports = function(app){
-
-  // tests à supprimer
-    app.get('/test', TestController.Test);
 
 // Main Routes
     app.get('/', HomeController.Index);
     app.get('/accueil', HomeController.Index);
 
 // VIP
-    app.get('/repertoire', VipController.Repertoire);
+    app.get('/vips', VipController.Ajout);
+    app.get('/vips/modifier', VipController.Modifier);
+    app.get('/vips/supprimer', VipController.Supprimer);
 
- // albums
-   app.get('/album', AlbumController.ListerAlbum);
+ // Photos
+   app.get('/photos', PhotosController.Ajout);
+   app.get('/photos/supprimer', PhotosController.Supprimer);
 
 // tout le reste
     app.get('*', HomeController.NotFound);

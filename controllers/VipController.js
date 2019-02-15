@@ -1,10 +1,20 @@
+let model = require("../models/vip.js");
+let async = require("async");
 
+module.exports.Ajout = function(request, response){
+    response.title = 'VIPS Admin';
 
+    response.render('ajoutVips', response);
+} ;
 
-// ///////////////////////// R E P E R T O I R E    D E S     S T A R S
+module.exports.Modifier = function(request, response){
+    response.title = 'VIPS Admin';
 
-module.exports.Repertoire = 	function(request, response){
-   response.title = 'Répertoire des stars';
+    response.render('modifVips', response);
+} ;
 
-      response.render('repertoireVips', response);
-  } ;
+module.exports.Supprimer = function(request, response){
+    response.title = 'VIPS Admin';
+
+    response.render('supprVips', response);
+} ;
