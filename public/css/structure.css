@@ -19,6 +19,8 @@ body {
     height:140px;
     background-color:#000;
     color:#fff;
+    display: flex;
+    justify-content: space-between;
 }
 
 .menu_haut {
@@ -188,10 +190,69 @@ a  {
     max-width: 750px;
     max-height: 250px;
 }
-.btn_ajout_photo, .btn_validation_ajout, .btn_annulation_ajout {
-    justify-content: center;
+.mesBoutons {
+    margin-left: 165px !important;
 }
-.btn_validation_ajout, .btn_annulation_ajout {
+.btn_validation, .btn_annulation {
     margin: 0 20px;
     width: inherit !important;
+    justify-content: center;
+}
+
+
+
+/* Page connexion.handlebars */
+.connexionHeader {
+    border: solid white thin;
+    min-width: 150px;
+    color: white;
+    align-self: center;
+    margin-right: 20px;
+    padding: 10px 20px;
+}
+.connexionHeader a {
+    color: white;
+}
+.connexionHeader span {
+    margin-right: 30px;
+}
+
+.connexion {
+    background-color: black;
+    color: white;
+    width: 500px;
+    border-radius: 10px;
+    margin: auto;
+    overflow-y: auto;
+    text-align: left;
+}
+.connexion h3 {
+    margin: 25px;
+    text-align: center;
+}
+.connexion form > div {
+    display: flex;
+    justify-content: center;
+    margin: 20px 10px;
+}
+.connexion form > div > div {
+    width: 150px;
+}
+.connexion form > div > div p {
+    margin: 0;
+}
+.boutonsConnexion {
+    margin: 25px 0;
+}
+.btn_annulation_connexion, .btn_confirmation_connexion {
+    margin: 0 20px;
+    width: inherit !important;
+    justify-content: center;
+}
+.btn_annulation_connexion input, .btn_confirmation_connexion input {
+    width: 100px;
+}
+.afficherMessageErreur {
+    text-align: center;
+    color: red;
 }

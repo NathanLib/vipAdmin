@@ -10,11 +10,46 @@ module.exports.Ajout = function(request, response){
 module.exports.Modifier = function(request, response){
     response.title = 'VIPS Admin';
 
-    response.render('modifVips', response);
+    async.parallel([
+        function(callback){
+            model.getAllVips(function(err,result) {callback(null, result)});
+        }
+
+
+    ],
+
+    function(err, result){
+        if (err) {
+            console.log(err);
+            return;
+        }
+
+        response.listVips = result[0];
+        response.render('modifVips', response);
+    }
+);
 } ;
+
 
 module.exports.Supprimer = function(request, response){
     response.title = 'VIPS Admin';
 
-    response.render('supprVips', response);
+    async.parallel([
+        function(callback){
+            model.getAllVips(function(err,result) {callback(null, result)});
+        }
+
+
+    ],
+
+    function(err, result){
+        if (err) {
+            console.log(err);
+            return;
+        }
+
+        response.listVips = result[0];
+        response.render('modifVips', response);
+    }
+);
 } ;

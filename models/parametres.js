@@ -1,9 +1,9 @@
 let db = require('../configDb');
 
-module.exports.getAllVips = function(callback) {
+module.exports.getAuthentification = function(callback) {
     db.getConnection(function (err, connexion) {
         if (!err) {
-            let sql = "SELECT VIP_NUMERO, VIP_NOM, VIP_PRENOM FROM vip ORDER BY VIP_NOM;";
+            let sql = "SELECT LOGIN, PASSWD FROM parametres;";
 
             //console.log(sql);
             connexion.query(sql, callback);
