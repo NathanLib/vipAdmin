@@ -12,18 +12,18 @@
                 <div class="input_nom_modif_vip">
                     <select class="" name="nom">
                         {{#each listVips}}
-                        <option value="{{this.VIP_NUMERO}}">{{{this.VIP_PRENOM}}} {{this.VIP_NOM}}</option>
+                        <option value="{{this.VIP_NUMERO}}">{{this.VIP_NOM}} {{this.VIP_PRENOM}}</option>
                         {{/each}}
                     </select>
                 </div>
             </div>
 
             <div class="mesBoutons">
-                <div class="btn_validation">
-                    <input type="button" name="validation" value="validation">
-                </div>
                 <div class="btn_annulation">
-                    <input type="button" name="annulation" value="annulation">
+                    <input type="reset" name="annulation" value="Annuler">
+                </div>
+                <div class="btn_validation">
+                    <input type="submit" name="validation" value="Valider">
                 </div>
             </div>
 

@@ -1,7 +1,7 @@
 {{> menuVips}}
 
 <div class="formulaire_vips">
-    <form class="" action="" method="">
+    <form class="" action="" method="post">
         <fieldset>
             <legend> <b>Ajout VIPs</b> </legend>
 
@@ -10,7 +10,7 @@
                     <p>Nom* :</p>
                 </div>
                 <div class="input_nom_ajout_vip">
-                    <input type="text" name="VIP_NOM" value="" required>
+                    <input type="text" name="name" value="" required>
                 </div>
             </div>
 
@@ -19,7 +19,7 @@
                     <p>Prenom* :</p>
                 </div>
                 <div class="input_prenom_ajout_vip">
-                    <input type="text" name="VIP_PRENOM" value="" required>
+                    <input type="text" name="prenom" value="" required>
                 </div>
             </div>
 
@@ -40,7 +40,7 @@
                     <p>Date de naissance :</p>
                 </div>
                 <div class="input_naissance_ajout_vip">
-                    <input type="date" name="VIP_NAISSANCE" value="">
+                    <input type="date" name="naissance" value="">
                 </div>
             </div>
 
@@ -49,19 +49,20 @@
                     <p>Nationalite :</p>
                 </div>
                 <div class="input_nationalite_ajout_vip">
-                    <select class="" name="NATIONALITE_NUMERO">
-                        <option value="">Nul part</option>
-
+                    <select class="" name="nationalite">
+                        {{#each listNationalites}}
+                        <option value="{{this.NATIONALITE_NUMERO}}">{{this.NATIONALITE_NOM}}</option>
+                        {{/each}}
                     </select>
                 </div>
             </div>
 
             <div class="commentaire_ajout_vip">
                 <div class="commentaire_prenom_ajout_vip">
-                    <p>Commentaire : :</p>
+                    <p>Commentaire : </p>
                 </div>
                 <div class="input_commentaire_ajout_vip">
-                    <textarea name="VIP_TEXTE" rows="8" cols="80"maxlength="65535"></textarea>
+                    <textarea name="commentaire_vip" rows="8" cols="80"maxlength="65535"></textarea>
                 </div>
             </div>
 
@@ -71,28 +72,28 @@
                 </div>
                 <div class="input_image_ajout_vip">
                     <div class="parcours_input_image_ajout_vip">
-                        <input type="text" name="PHOTO_ADRESSE" value="">
+                        <input type="text" name="adresse" value="">
                         <button type="button" name="parcours_image">Parcourir</button>
                     </div>
 
                     <div class="sujets_input_image_ajout_vip">
                         <p>Sujet :</p>
-                        <input type="text" name="PHOTO_SUJET" value="">
+                        <input type="text" name="sujet" value="">
                     </div>
 
                     <div class="commentaire_input_image_ajout_vip">
                         <p>Commentaire :</p>
-                        <textarea name="PHOTO_COMMENTAIRE" rows="8" cols="80"maxlength="65535"></textarea>
+                        <textarea name="commentaire_photo" rows="8" cols="80"maxlength="65535"></textarea>
                     </div>
                 </div>
             </div>
 
             <div class="mesBoutons">
-                <div class="btn_validation">
-                    <input type="button" name="validation" value="validation">
-                </div>
                 <div class="btn_annulation">
-                    <input type="button" name="annulation" value="annulation">
+                    <input type="reset" name="annulation" value="Annuler">
+                </div>
+                <div class="btn_validation">
+                    <input type="submit" name="validation" value="Valider">
                 </div>
             </div>
 

@@ -4,7 +4,23 @@ let async = require("async");
 module.exports.Ajout = function(request, response){
     response.title = 'VIPS Admin';
 
-    response.render('ajoutVips', response);
+    async.parallel([
+        function(callback){
+            model.getAllNationalites(function(err,result) {callback(null, result)});
+        }
+
+    ],
+
+    function(err, result){
+        if (err) {
+            console.log(err);
+            return;
+        }
+
+        response.listNationalites = result[0];
+        response.render('ajoutVips', response);
+    }
+);
 } ;
 
 module.exports.Modifier = function(request, response){
@@ -14,8 +30,6 @@ module.exports.Modifier = function(request, response){
         function(callback){
             model.getAllVips(function(err,result) {callback(null, result)});
         }
-
-
     ],
 
     function(err, result){

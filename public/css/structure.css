@@ -194,9 +194,12 @@ a  {
     margin-left: 165px !important;
 }
 .btn_validation, .btn_annulation {
-    margin: 0 20px;
+    margin: 0 0 0 20px;
     width: inherit !important;
     justify-content: center;
+}
+.btn_validation input, .btn_annulation input {
+    width: 80px;
 }
 
 

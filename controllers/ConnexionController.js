@@ -18,7 +18,7 @@ module.exports.Authentification = function(request, response){
             return;
         }
 
-        if (request.body.login == result[0]['LOGIN']) {
+        if (request.body.login.toLowerCase() == result[0]['LOGIN'].toLowerCase()) {
             if (request.body.mdp == cryptr.decrypt(result[0]['PASSWD'])) {
                 request.session.utilisateur = request.body.login;
             }

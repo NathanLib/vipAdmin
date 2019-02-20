@@ -11,3 +11,15 @@ module.exports.getAllVips = function(callback) {
         }
     });
 }
+module.exports.getAllNationalites = function(callback) {
+    db.getConnection(function (err, connexion) {
+        if (!err) {
+            let sql = "SELECT n.NATIONALITE_NUMERO, n.NATIONALITE_NOM FROM nationalite n";
+            sql = sql + " ORDER BY n.NATIONALITE_NOM;";
+
+            //console.log(sql);
+            connexion.query(sql, callback);
+            connexion.release();
+        }
+    });
+}

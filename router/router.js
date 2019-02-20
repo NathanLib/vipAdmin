@@ -5,7 +5,7 @@ let ConnexionController = require('./../controllers/ConnexionController');
 
 // Routes
 module.exports = function(app){
-
+    
     // Main Routes
     app.get('/', HomeController.Index);
     app.get('/accueil', HomeController.Index);
@@ -15,7 +15,7 @@ module.exports = function(app){
     app.post('/authentification', ConnexionController.Authentification);
     app.get('/deconnexion', ConnexionController.Deconnexion);
 
-    if (session.utilisateur) {
+    if (true/*session.utilisateur*/) {
         // VIP
         app.get('/vips', VipController.Ajout);
         app.get('/vips/modifier', VipController.Modifier);
