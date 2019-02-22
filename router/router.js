@@ -5,7 +5,7 @@ let ConnexionController = require('./../controllers/ConnexionController');
 
 // Routes
 module.exports = function(app){
-    
+
     // Main Routes
     app.get('/', HomeController.Index);
     app.get('/accueil', HomeController.Index);
@@ -15,16 +15,18 @@ module.exports = function(app){
     app.post('/authentification', ConnexionController.Authentification);
     app.get('/deconnexion', ConnexionController.Deconnexion);
 
-    if (true/*session.utilisateur*/) {
-        // VIP
-        app.get('/vips', VipController.Ajout);
-        app.get('/vips/modifier', VipController.Modifier);
-        app.get('/vips/supprimer', VipController.Supprimer);
+    //Accès vérifié
+    // VIP
+    app.get('/vips', ConnexionController.Verification, VipController.Ajout);
+    app.get('/vips/ajoutVip', ConnexionController.Verification, VipController.AjoutVip);
+    
+    app.get('/vips/modifier', ConnexionController.Verification, VipController.Modifier);
+    app.get('/vips/supprimer', ConnexionController.Verification, VipController.Supprimer);
 
-        // Photos
-        app.get('/photos', PhotosController.Ajout);
-        app.get('/photos/supprimer', PhotosController.Supprimer);
-    }
+    // Photos
+    app.get('/photos', ConnexionController.Verification, PhotosController.Ajout);
+    app.get('/photos/supprimer', ConnexionController.Verification, PhotosController.Supprimer);
+    //Fin accès vérifié
 
     // tout le reste
     app.get('*', HomeController.NotFound);

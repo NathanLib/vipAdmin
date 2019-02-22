@@ -23,6 +23,13 @@ module.exports.Ajout = function(request, response){
 );
 } ;
 
+module.exports.AjoutVip = function(request, response){
+    response.title = 'VIPS Admin';
+
+    console.log(request.body);
+    response.render('home', response);
+} ;
+
 module.exports.Modifier = function(request, response){
     response.title = 'VIPS Admin';
 

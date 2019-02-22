@@ -34,6 +34,14 @@ module.exports.Authentification = function(request, response){
     } );
 }
 
+module.exports.Verification = function(request, response, next) {
+    if (!request.session || !request.session.utilisateur) {
+        response.redirect('/connexion');
+        return;
+    }
+    next();
+} ;
+
 module.exports.Deconnexion = function(request, response){
     response.title = 'Deconnexion Admin';
     request.session.destroy();

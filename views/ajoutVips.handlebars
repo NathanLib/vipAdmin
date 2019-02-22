@@ -1,7 +1,7 @@
 {{> menuVips}}
 
 <div class="formulaire_vips">
-    <form class="" action="" method="post">
+    <form class="" action="/vips/ajoutVip" method="post">
         <fieldset>
             <legend> <b>Ajout VIPs</b> </legend>
 
@@ -37,10 +37,10 @@
 
             <div class="naissance_ajout_vip">
                 <div class="text_naissance_ajout_vip">
-                    <p>Date de naissance :</p>
+                    <p>Date de naissance* :</p>
                 </div>
                 <div class="input_naissance_ajout_vip">
-                    <input type="date" name="naissance" value="">
+                    <input type="date" name="naissance" value="" required>
                 </div>
             </div>
 
@@ -72,8 +72,7 @@
                 </div>
                 <div class="input_image_ajout_vip">
                     <div class="parcours_input_image_ajout_vip">
-                        <input type="text" name="adresse" value="">
-                        <button type="button" name="parcours_image">Parcourir</button>
+                        <input type="file" name="parcours_image" value="">
                     </div>
 
                     <div class="sujets_input_image_ajout_vip">
@@ -83,7 +82,7 @@
 
                     <div class="commentaire_input_image_ajout_vip">
                         <p>Commentaire :</p>
-                        <textarea name="commentaire_photo" rows="8" cols="80"maxlength="65535"></textarea>
+                        <textarea name="commentaire_photo" rows="8" cols="80" maxlength="65535"></textarea>
                     </div>
                 </div>
             </div>
