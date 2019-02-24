@@ -10,23 +10,22 @@
                     <p>Nom du vip :</p>
                 </div>
                 <div class="input_nom_modif_vip">
-                    <select class="" name="nom">
+                    <select id="select_vip" name="nom" onchange="selectVip()">
+                        <option value="0">- Choisir un vip -</option>
                         {{#each listVips}}
                         <option value="{{this.VIP_NUMERO}}">{{this.VIP_NOM}} {{this.VIP_PRENOM}}</option>
                         {{/each}}
                     </select>
                 </div>
             </div>
-
-            <div class="mesBoutons">
-                <div class="btn_annulation">
-                    <input type="reset" name="annulation" value="Annuler">
-                </div>
-                <div class="btn_validation">
-                    <input type="submit" name="validation" value="Valider">
-                </div>
-            </div>
-
         </fieldset>
     </form>
 </div>
+
+<script>
+function selectVip(value) {
+    valueVip = document.getElementById("select_vip").value;
+    var myUrl = window.location.href;
+    window.location.href= myUrl + "/" + valueVip;
+}
+</script>

@@ -144,6 +144,31 @@ a  {
     max-width: 750px;
     max-height: 250px;
 }
+/**********/
+.input_commentaire_modifier_vip textarea {
+    max-width: 750px;
+    max-height: 250px;
+}
+.parcours_input_image_modifier_vip {
+    display: flex;
+}
+.parcours_input_image_modifier_vip button {
+    margin: 0 10px;
+}
+.sujets_input_image_modifier_vip, .commentaire_input_image_modifier_vip {
+    margin-top: 10px;
+}
+.commentaire_input_image_modifier_vip textarea {
+    max-width: 750px;
+    max-height: 250px;
+}
+.parcours_input_image_modifier_vip input[type=text] {
+    margin-right: 10px;
+}
+.parcours_input_image_modifier_vip input[type=file] {
+    width: 118px;
+}
+
 
 
 /* Page menuPhotos.handlbars */

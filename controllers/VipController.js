@@ -8,7 +8,6 @@ module.exports.Ajout = function(request, response){
         function(callback){
             model.getAllNationalites(function(err,result) {callback(null, result)});
         }
-
     ],
 
     function(err, result){
@@ -27,7 +26,23 @@ module.exports.AjoutVip = function(request, response){
     response.title = 'VIPS Admin';
 
     console.log(request.body);
-    response.render('home', response);
+//
+//    async.parallel([
+//        function(callback){
+//            model.insertVip(function(err,result) {callback(data, result)});
+//        }
+//    ],
+//
+//    function(err, result){
+//        if (err) {
+//            console.log(err);
+//            return;
+//        }
+//
+//        response.insert = result[0];
+//        response.render('home', response);
+//    }
+//);
 } ;
 
 module.exports.Modifier = function(request, response){
@@ -47,6 +62,32 @@ module.exports.Modifier = function(request, response){
 
         response.listVips = result[0];
         response.render('modifVips', response);
+    }
+);
+} ;
+
+module.exports.ModifierDetail = function(request, response){
+    response.title = 'VIPS Admin';
+    let numero = request.params.numero;
+
+    async.parallel([
+        function(callback){
+            model.getAllNationalites(function(err,result) {callback(null, result)});
+        },
+        function(callback){
+            model.getDetailsVip(numero, function(err,result) {callback(null, result)});
+        }
+    ],
+
+    function(err, result){
+        if (err) {
+            console.log(err);
+            return;
+        }
+
+        response.listNationalites = result[0];
+        response.details = result[1][0];
+        response.render('modifVipsDetails', response);
     }
 );
 } ;

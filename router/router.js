@@ -18,9 +18,11 @@ module.exports = function(app){
     //Accès vérifié
     // VIP
     app.get('/vips', ConnexionController.Verification, VipController.Ajout);
-    app.get('/vips/ajoutVip', ConnexionController.Verification, VipController.AjoutVip);
-    
+    app.post('/vips/ajoutVip', ConnexionController.Verification, VipController.AjoutVip);
+
     app.get('/vips/modifier', ConnexionController.Verification, VipController.Modifier);
+    app.get('/vips/modifier/:numero', ConnexionController.Verification, VipController.ModifierDetail);
+
     app.get('/vips/supprimer', ConnexionController.Verification, VipController.Supprimer);
 
     // Photos
