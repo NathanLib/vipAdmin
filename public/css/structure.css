@@ -133,6 +133,7 @@ a  {
 }
 .parcours_input_image_ajout_vip {
     display: flex;
+    min-width: 240px;
 }
 .parcours_input_image_ajout_vip button {
     margin: 0 10px;
@@ -162,11 +163,20 @@ a  {
     max-width: 750px;
     max-height: 250px;
 }
+.parcours_input_image_modifier_vip {
+    min-width: 240px;
+}
 .parcours_input_image_modifier_vip input[type=text] {
     margin-right: 10px;
 }
 .parcours_input_image_modifier_vip input[type=file] {
     width: 118px;
+}
+.separateur {
+    border: solid #585858 thin;
+    border-collapse: collapse;
+    width: 95%;
+    margin: 20px auto;
 }
 
 
@@ -207,9 +217,7 @@ a  {
 /********/
 .input_parcours_image_ajout_photos {
     display: flex;
-}
-.input_parcours_image_ajout_photos button {
-    margin: 0 10px;
+    min-width: 240px;
 }
 .commentaire_image_ajout_photos textarea {
     max-width: 750px;
@@ -226,7 +234,25 @@ a  {
 .btn_validation input, .btn_annulation input {
     width: 80px;
 }
-
+/********/
+.photos_vip_suppr > figure {
+    margin : 0 25px 0 0;
+}
+.photos_vip_suppr > figure > img {
+    height: 105px;
+}
+.photos_vip_suppr > figure > figcaption:nth-last-child(1) {
+    margin-top: 8px;
+}
+.photos_vip_suppr input[type=checkbox] {
+    vertical-align: middle;
+    position: relative;
+    bottom: 1px;
+    margin: 0;
+}
+#buttonsSuppr {
+    margin-left: -9px !important;
+}
 
 
 /* Page connexion.handlebars */

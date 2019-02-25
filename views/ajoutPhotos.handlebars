@@ -10,8 +10,10 @@
                     <p>Nom du vip :</p>
                 </div>
                 <div class="input_nom_ajout_photos">
-                    <select class="" name="name">
-                        <option value="">Laura Liboutet</option>
+                    <select class="" name="vip">
+                        {{#each listVips}}
+                        <option value="{{this.VIP_NUMERO}}">{{this.VIP_NOM}} {{this.VIP_PRENOM}}</option>
+                        {{/each}}
                     </select>
                 </div>
             </div>
@@ -21,8 +23,7 @@
                     <p>Adresse de la photo :</p>
                 </div>
                 <div class="input_parcours_image_ajout_photos">
-                    <input type="text" name="parcours_image" value="">
-                    <button type="button" name="parcours_image">Parcourir</button>
+                    <input type="file" name="photo_address" value="">
                 </div>
             </div>
 

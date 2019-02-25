@@ -5,18 +5,55 @@
         <fieldset>
             <legend> <b>Supprimer une photo</b> </legend>
 
+            {{#ifCond numeroVip '==' -1}}
             <div class="nom_suppr_photos">
                 <div class="text_nom_suppr_photos">
-                    <p>Nom du vip :</p>
+                    <p>Choisir un vip :</p>
                 </div>
                 <div class="input_nom_suppr_photos">
-                    <select class="" name="nom">
-                        <option value="">Laura Liboutet</option>
+                    <select id="select_vip_suppr_photo" class="" name="nom" onchange="selectVipSupprPhoto(value)">
+                        <option value="">- Liste des vips -</option>
+                        {{#each listVips}}
+                        <option value="{{this.VIP_NUMERO}}">{{this.VIP_NOM}} {{this.VIP_PRENOM}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+            </div>
+            {{else}}
+            <div class="nom_suppr_photos">
+                <div class="text_nom_suppr_photos">
+                    <p>Sélection :</p>
+                </div>
+                <div class="input_nom_suppr_photos">
+                    <select id="select_vip_suppr_photo" class="" name="nom" onchange="selectVipSupprPhoto(value)">
+                        {{#each listVips}}
+                        {{#ifCond this.VIP_NUMERO '!=' ../numeroVip}}
+                        <option value="{{this.VIP_NUMERO}}">{{this.VIP_NOM}} {{this.VIP_PRENOM}}</option>
+                        {{else}}
+                        <option value="{{this.VIP_NUMERO}}" selected='selected'>{{this.VIP_NOM}} {{this.VIP_PRENOM}}</option>
+                        {{/ifCond}}
+                        {{/each}}
                     </select>
                 </div>
             </div>
 
-            <div class="mesBoutons">
+            <hr class="separateur">
+
+            <div class="photos_vip_suppr">
+                {{#each photos}}
+                <figure>
+                    <img src="/images/vip/{{this.PHOTO_ADRESSE}}" alt="photo n° {{this.PHOTO_NUMERO}}">
+                    <figcaption>
+                        {{this.PHOTO_ADRESSE}}
+                    </figcaption>
+                    <figcaption>
+                        <label><input type="checkbox" name="" value=""> Supprimer ?</label>
+                    </figcaption>
+                </figure>
+                {{/each}}
+            </div>
+
+            <div id="buttonsSuppr" class="mesBoutons">
                 <div class="btn_annulation">
                     <input type="reset" name="annulation" value="Annuler">
                 </div>
@@ -24,7 +61,16 @@
                     <input type="submit" name="validation" value="Valider">
                 </div>
             </div>
+            {{/ifCond}}
 
         </fieldset>
     </form>
 </div>
+
+<script type="text/javascript">
+function selectVipSupprPhoto(value) {
+    valueVip = document.getElementById("select_vip_suppr_photo").value;
+    window.location.href = "http://localhost:1903/photos/supprimer/" + valueVip;
+}
+
+</script>

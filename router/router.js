@@ -20,14 +20,13 @@ module.exports = function(app){
     app.get('/vips', ConnexionController.Verification, VipController.Ajout);
     app.post('/vips/ajoutVip', ConnexionController.Verification, VipController.AjoutVip);
 
-    app.get('/vips/modifier', ConnexionController.Verification, VipController.Modifier);
     app.get('/vips/modifier/:numero', ConnexionController.Verification, VipController.ModifierDetail);
 
     app.get('/vips/supprimer', ConnexionController.Verification, VipController.Supprimer);
 
     // Photos
     app.get('/photos', ConnexionController.Verification, PhotosController.Ajout);
-    app.get('/photos/supprimer', ConnexionController.Verification, PhotosController.Supprimer);
+    app.get('/photos/supprimer/:numero', ConnexionController.Verification, PhotosController.Supprimer);
     //Fin accès vérifié
 
     // tout le reste

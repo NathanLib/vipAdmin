@@ -5,6 +5,42 @@
         <fieldset>
             <legend> <b>Modifier VIPs</b> </legend>
 
+            {{#ifCond numeroVip '==' -1}}
+            <div class="nom_modif_vip">
+                <div class="text_nom_modif_vip">
+                    <p>Choisir un vip :</p>
+                </div>
+                <div class="input_nom_modif_vip">
+                    <select id="select_vip" name="nom" onchange="selectVip()">
+                        <option value="">- Liste des vips -</option>
+                        {{#each listVips}}
+                        <option value="{{this.VIP_NUMERO}}">{{this.VIP_NOM}} {{this.VIP_PRENOM}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+            </div>
+
+            {{else}}
+
+            <div class="nom_modif_vip">
+                <div class="text_nom_modif_vip">
+                    <p>Sélection :</p>
+                </div>
+                <div class="input_nom_modif_vip">
+                    <select id="select_vip" name="nom" onchange="selectVip()">
+                        {{#each listVips}}
+                        {{#ifCond this.VIP_NUMERO '!=' ../numeroVip}}
+                        <option value="{{this.VIP_NUMERO}}">{{this.VIP_NOM}} {{this.VIP_PRENOM}}</option>
+                        {{else}}
+                        <option value="{{this.VIP_NUMERO}}" selected="selected">{{this.VIP_NOM}} {{this.VIP_PRENOM}}</option>
+                        {{/ifCond}}
+                        {{/each}}
+                    </select>
+                </div>
+            </div>
+
+            <hr class="separateur">
+
             <div class="nom_modifier_vip">
                 <div class="text_nom_modifier_vip">
                     <p>Nom :</p>
@@ -29,12 +65,12 @@
                 </div>
                 <div class="input_sexe_modifier_vip">
                     <select class="" name="VIP_SEXE">
-                        {{#ifCond details.VIP_SEXE '==' 'M'}}
-                        <option value="M">Masculin</option>
+                        {{#ifCond details.VIP_SEXE '==' 'F'}}
                         <option value="F">Féminin</option>
+                        <option value="M">Masculin</option>
                         {{else}}
-                        <option value="F">Féminin</option>
                         <option value="M">Masculin</option>
+                        <option value="F">Féminin</option>
                         {{/ifCond}}
                     </select>
                 </div>
@@ -45,7 +81,7 @@
                     <p>Date de naissance :</p>
                 </div>
                 <div class="input_naissance_modifier_vip">
-                    <input type="date" name="VIP_NAISSANCE" value="{{formatDate details.VIP_NAISSANCE 'YYYY-MM-D'}}">
+                    <input type="date" name="VIP_NAISSANCE" value="{{formatDate details.VIP_NAISSANCE 'YYYY-MM-DD'}}">
                 </div>
             </div>
 
@@ -56,12 +92,11 @@
                 <div class="input_nationalite_modifier_vip">
                     <select class="" name="NATIONALITE_NUMERO">
                         {{#each listNationalites}}
-                        <!--A finir condition : ne fonctionne pas !
-                        {{#ifCond details.NATIONALITE_NUMERO '==' '2'}}
-                        <option value="{{this.NATIONALITE_NUMERO}}" selected>{{this.NATIONALITE_NOM}}</option>
-                        {{else}} -->
+                        {{#ifCond this.NATIONALITE_NUMERO '!==' ../details.NATIONALITE_NUMERO}}
                         <option value="{{this.NATIONALITE_NUMERO}}">{{this.NATIONALITE_NOM}}</option>
-                        <!--{{/ifCond}}-->
+                        {{else}}
+                        <option value="{{this.NATIONALITE_NUMERO}}" selected="selected">{{this.NATIONALITE_NOM}}</option>
+                        {{/ifCond}}
                         {{/each}}
                     </select>
                 </div>
@@ -107,17 +142,18 @@
                 </div>
             </div>
 
+            {{/ifCond}}
+
         </fieldset>
     </form>
 </div>
 
 <script type="text/javascript">
-
 window.onload = function() {
     reSize();
 }
-
 function reSize() {
+    document.getElementById("photo_sujet").style.minWidth = '156.8px';
     data = document.getElementById("photo_sujet").value;
     document.getElementById("photo_sujet").style.width = ((data.length + 3)*6) + 'px';
 }
@@ -125,5 +161,9 @@ function getValueAddress() {
     value = document.getElementById("new_photo_address").value;
     address = value.substring(value.lastIndexOf("\\") + 1, value.length);
     document.getElementById("photo_address").value = address;
+}
+function selectVip(value) {
+    valueVip = document.getElementById("select_vip").value;
+    window.location.href = "http://localhost:1903/vips/modifier/" + valueVip;
 }
 </script>
