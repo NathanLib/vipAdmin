@@ -1,7 +1,7 @@
 {{> menuVips}}
 
 <div class="formulaire_vips">
-    <form class="" action="" method="post">
+    <form class="" action="/vips/modifier/{{numeroVip}}/update" method="post">
         <fieldset>
             <legend> <b>Modifier VIPs</b> </legend>
 
@@ -46,7 +46,7 @@
                     <p>Nom :</p>
                 </div>
                 <div class="input_nom_modifier_vip">
-                    <input type="text" name="VIP_NOM" value="{{details.VIP_NOM}}">
+                    <input id="VIP_NOM" type="text" name="VIP_NOM" value="{{details.VIP_NOM}}">
                 </div>
             </div>
 
@@ -55,7 +55,7 @@
                     <p>Prenom :</p>
                 </div>
                 <div class="input_prenom_modifier_vip">
-                    <input type="text" name="VIP_PRENOM" value="{{details.VIP_PRENOM}}">
+                    <input id="VIP_PRENOM" type="text" name="VIP_PRENOM" value="{{details.VIP_PRENOM}}">
                 </div>
             </div>
 
@@ -64,7 +64,7 @@
                     <p>Sexe :</p>
                 </div>
                 <div class="input_sexe_modifier_vip">
-                    <select class="" name="VIP_SEXE">
+                    <select id="VIP_SEXE" class="" name="VIP_SEXE">
                         {{#ifCond details.VIP_SEXE '==' 'F'}}
                         <option value="F">Féminin</option>
                         <option value="M">Masculin</option>
@@ -81,7 +81,7 @@
                     <p>Date de naissance :</p>
                 </div>
                 <div class="input_naissance_modifier_vip">
-                    <input type="date" name="VIP_NAISSANCE" value="{{formatDate details.VIP_NAISSANCE 'YYYY-MM-DD'}}">
+                    <input id="VIP_NAISSANCE" type="date" name="VIP_NAISSANCE" value="{{formatDate details.VIP_NAISSANCE 'YYYY-MM-DD'}}">
                 </div>
             </div>
 
@@ -90,7 +90,7 @@
                     <p>Nationalite :</p>
                 </div>
                 <div class="input_nationalite_modifier_vip">
-                    <select class="" name="NATIONALITE_NUMERO">
+                    <select id="NATIONALITE_NUMERO" class="" name="NATIONALITE_NUMERO">
                         {{#each listNationalites}}
                         {{#ifCond this.NATIONALITE_NUMERO '!==' ../details.NATIONALITE_NUMERO}}
                         <option value="{{this.NATIONALITE_NUMERO}}">{{this.NATIONALITE_NOM}}</option>
@@ -107,7 +107,7 @@
                     <p>Commentaire : </p>
                 </div>
                 <div class="input_commentaire_modifier_vip">
-                    <textarea name="VIP_TEXTE" rows="8" cols="80"maxlength="65535">{{details.VIP_TEXTE}}</textarea>
+                    <textarea id="VIP_TEXTE" name="VIP_TEXTE" rows="8" cols="80"maxlength="65535">{{details.VIP_TEXTE}}</textarea>
                 </div>
             </div>
 
@@ -117,18 +117,18 @@
                 </div>
                 <div class="input_image_modifiert_vip">
                     <div class="parcours_input_image_modifier_vip">
-                        <input id="photo_address" type="text" name="" value="{{details.PHOTO_ADRESSE}}">
-                        <input id="new_photo_address" type="file" name="PHOTO_ADRESSE" value="" accept=".jpg, .jpeg, .png" oninput="getValueAddress()">
+                        <input id="PHOTO_ADRESSE" type="text" name="PHOTO_ADRESSE" value="{{details.PHOTO_ADRESSE}}">
+                        <input id="new_photo_address" type="file" name="new_photo_address" value="" accept=".jpg, .jpeg, .png" oninput="getValueAddress()">
                     </div>
 
                     <div class="sujets_input_image_modifier_vip">
                         <p>Sujet :</p>
-                        <input id="photo_sujet" type="text" name="PHOTO_SUJET" value="{{details.PHOTO_SUJET}}">
+                        <input id="PHOTO_SUJET" type="text" name="PHOTO_SUJET" value="{{details.PHOTO_SUJET}}">
                     </div>
 
                     <div class="commentaire_input_image_modifier_vip">
                         <p>Commentaire :</p>
-                        <textarea name="PHOTO_COMMENTAIRE" rows="8" cols="80" maxlength="65535">{{details.PHOTO_COMMENTAIRE}}</textarea>
+                        <textarea id="PHOTO_COMMENTAIRE" name="PHOTO_COMMENTAIRE" rows="8" cols="80" maxlength="65535">{{details.PHOTO_COMMENTAIRE}}</textarea>
                     </div>
                 </div>
             </div>
@@ -139,6 +139,13 @@
                 </div>
                 <div class="btn_validation">
                     <input type="submit" name="validation" value="Valider">
+                </div>
+            </div>
+
+            <div class="numeroVip_modifier_vip">
+                <div></div>
+                <div class="input_numeroVip_modifier_vip">
+                    <input id="NUMERO_VIP" type="text" name="NUMERO_VIP" value="{{numeroVip}}" hidden>
                 </div>
             </div>
 
@@ -153,14 +160,14 @@ window.onload = function() {
     reSize();
 }
 function reSize() {
-    document.getElementById("photo_sujet").style.minWidth = '156.8px';
-    data = document.getElementById("photo_sujet").value;
-    document.getElementById("photo_sujet").style.width = ((data.length + 3)*6) + 'px';
+    document.getElementById("PHOTO_SUJET").style.minWidth = '156.8px';
+    data = document.getElementById("PHOTO_SUJET").value;
+    document.getElementById("PHOTO_SUJET").style.width = ((data.length + 3)*6) + 'px';
 }
 function getValueAddress() {
     value = document.getElementById("new_photo_address").value;
     address = value.substring(value.lastIndexOf("\\") + 1, value.length);
-    document.getElementById("photo_address").value = address;
+    document.getElementById("PHOTO_ADRESSE").value = address;
 }
 function selectVip(value) {
     valueVip = document.getElementById("select_vip").value;

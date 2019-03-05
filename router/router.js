@@ -21,6 +21,7 @@ module.exports = function(app){
     app.post('/vips/ajoutVip', ConnexionController.Verification, VipController.AjoutVip);
 
     app.get('/vips/modifier/:numero', ConnexionController.Verification, VipController.ModifierDetail);
+    app.post('/vips/modifier/:numero/update', ConnexionController.Verification, VipController.UpdateDetail);
 
     app.get('/vips/supprimer', ConnexionController.Verification, VipController.Supprimer);
 

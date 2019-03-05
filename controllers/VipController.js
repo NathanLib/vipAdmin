@@ -7,6 +7,10 @@ module.exports.Ajout = function(request, response){
     async.parallel([
         function(callback){
             model.getAllNationalites(function(err,result) {callback(null, result)});
+        },
+
+        function(callback){
+            model.getAllNationalites(function(err,result) {callback(null, result)});
         }
     ],
 
@@ -25,24 +29,27 @@ module.exports.Ajout = function(request, response){
 module.exports.AjoutVip = function(request, response){
     response.title = 'VIPS Admin';
 
-    console.log(request.body);
-    //
-    //    async.parallel([
-    //        function(callback){
-    //            model.insertVip(function(err,result) {callback(data, result)});
-    //        }
-    //    ],
-    //
-    //    function(err, result){
-    //        if (err) {
-    //            console.log(err);
-    //            return;
-    //        }
-    //
-    //        response.insert = result[0];
-    //        response.render('home', response);
-    //    }
-    //);
+    var dataForm = request.body;
+
+    async.series([
+        function(callback){
+            model.insertVip(dataForm, function(err,result) {callback(null, result)});
+        }
+
+    ],
+
+    function(err, result){
+        if (err) {
+            console.log(err);
+            return;
+        }
+
+        console.log(result[0].insertId);
+        model.insertVipPhoto(result[0].insertId, dataForm, function(err,result) {});
+
+        response.render('ajoutVipsConfirmation', response);
+    }
+);
 } ;
 
 module.exports.ModifierDetail = function(request, response){
@@ -98,6 +105,28 @@ else {
 }
 } ;
 
+module.exports.UpdateDetail = function(request, response){
+    response.title = 'VIPS Admin';
+
+    var dataForm = request.body;
+
+    async.series([
+        function(callback){
+            model.updateInfoVip(dataForm, function(err,result) {callback(null, result)});
+        }
+    ],
+
+    function(err, result){
+        if (err) {
+            console.log(err);
+            return;
+        }
+
+        //response.insert = result[0];
+        response.render('ajoutVipsConfirmation', response);
+    }
+);
+} ;
 
 module.exports.Supprimer = function(request, response){
     response.title = 'VIPS Admin';

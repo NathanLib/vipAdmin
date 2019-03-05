@@ -10,7 +10,7 @@
                     <p>Nom* :</p>
                 </div>
                 <div class="input_nom_ajout_vip">
-                    <input type="text" name="VIP_NOM" value="" required>
+                    <input id="VIP_NOM" type="text" name="VIP_NOM" value="" required>
                 </div>
             </div>
 
@@ -19,7 +19,7 @@
                     <p>Prenom* :</p>
                 </div>
                 <div class="input_prenom_ajout_vip">
-                    <input type="text" name="VIP_PRENOM" value="" required>
+                    <input id="VIP_PRENOM" type="text" name="VIP_PRENOM" value="" required>
                 </div>
             </div>
 
@@ -28,7 +28,7 @@
                     <p>Sexe :</p>
                 </div>
                 <div class="input_sexe_ajout_vip">
-                    <select class="" name="VIP_SEXE">
+                    <select id="VIP_SEXE" class="" name="VIP_SEXE">
                         <option value="M">Masculin</option>
                         <option value="F">Féminin</option>
                     </select>
@@ -40,7 +40,7 @@
                     <p>Date de naissance* :</p>
                 </div>
                 <div class="input_naissance_ajout_vip">
-                    <input type="date" name="VIP_NAISSANCE" value="" required>
+                    <input id="VIP_NAISSANCE" type="date" name="VIP_NAISSANCE" value="" required>
                 </div>
             </div>
 
@@ -49,7 +49,7 @@
                     <p>Nationalite :</p>
                 </div>
                 <div class="input_nationalite_ajout_vip">
-                    <select class="" name="NATIONALITE_NUMERO">
+                    <select id="NATIONALITE_NUMERO" class="" name="NATIONALITE_NUMERO">
                         {{#each listNationalites}}
                         <option value="{{this.NATIONALITE_NUMERO}}">{{this.NATIONALITE_NOM}}</option>
                         {{/each}}
@@ -62,7 +62,7 @@
                     <p>Commentaire : </p>
                 </div>
                 <div class="input_commentaire_ajout_vip">
-                    <textarea name="VIP_TEXTE" rows="8" cols="80"maxlength="65535"></textarea>
+                    <textarea id="VIP_TEXTE" name="VIP_TEXTE" rows="8" cols="80"maxlength="65535"></textarea>
                 </div>
             </div>
 
@@ -72,17 +72,17 @@
                 </div>
                 <div class="input_image_ajout_vip">
                     <div class="parcours_input_image_ajout_vip">
-                        <input type="file" name="PHOTO_ADRESSE" value="" accept=".jpg, .jpeg, .png">
+                        <input id="PHOTO_ADRESSE" type="file" name="PHOTO_ADRESSE" value="" accept=".jpg, .jpeg, .png">
                     </div>
 
                     <div class="sujets_input_image_ajout_vip">
                         <p>Sujet :</p>
-                        <input type="text" name="PHOTO_SUJET" value="">
+                        <input id="PHOTO_SUJET" type="text" name="PHOTO_SUJET" value="">
                     </div>
 
                     <div class="commentaire_input_image_ajout_vip">
                         <p>Commentaire :</p>
-                        <textarea name="PHOTO_COMMENTAIRE" rows="8" cols="80" maxlength="65535"></textarea>
+                        <textarea id="PHOTO_COMMENTAIRE" name="PHOTO_COMMENTAIRE" rows="8" cols="80" maxlength="65535"></textarea>
                     </div>
                 </div>
             </div>
@@ -93,13 +93,6 @@
                 </div>
                 <div class="btn_validation">
                     <input type="submit" name="validation" value="Valider">
-                </div>
-            </div>
-
-            <div class="dateInsertion_ajout_vip">
-                <div></div>
-                <div class="input_dateInsertion_ajout_vip">
-                    <input type="date" name="VIP_DATE_INSERTION" value="{{formatDate moment 'YYYY-MM-DD'}}" hidden>
                 </div>
             </div>
 
