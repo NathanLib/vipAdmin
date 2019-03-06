@@ -44,7 +44,6 @@ module.exports.AjoutVip = function(request, response){
             return;
         }
 
-        console.log(result[0].insertId);
         model.insertVipPhoto(result[0].insertId, dataForm, function(err,result) {});
 
         response.render('ajoutVipsConfirmation', response);

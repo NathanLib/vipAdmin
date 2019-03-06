@@ -76,8 +76,8 @@ module.exports.updateInfoVip = function(data, callback) {
             // WARNING: Demander pour l'échapement des caractères : \'
             let sql = "UPDATE vip v, photo p";
             sql = sql + " SET v.NATIONALITE_NUMERO="+data.NATIONALITE_NUMERO+", v.VIP_NOM=UPPER('"+data.VIP_NOM+"'), v.VIP_PRENOM='"+data.VIP_PRENOM+"', v.VIP_SEXE='"+data.VIP_SEXE+"',";
-            sql = sql + " v.VIP_NAISSANCE='"+data.VIP_NAISSANCE+"', v.VIP_TEXTE='"+data.VIP_TEXTE+"', p.PHOTO_SUJET='"+data.PHOTO_SUJET+"',";
-            sql = sql + " p.PHOTO_COMMENTAIRE='"+data.PHOTO_COMMENTAIRE+"', p.PHOTO_ADRESSE='"+data.PHOTO_ADRESSE+"'";
+            sql = sql + " v.VIP_NAISSANCE='"+data.VIP_NAISSANCE+"', v.VIP_TEXTE='"+data.VIP_TEXTE.replace("'", "\\'")+"', p.PHOTO_SUJET='"+data.PHOTO_SUJET+"',";
+            sql = sql + " p.PHOTO_COMMENTAIRE='"+data.PHOTO_COMMENTAIRE.replace("'", "\\'")+"', p.PHOTO_ADRESSE='"+data.PHOTO_ADRESSE+"'";
             sql = sql + " WHERE v.VIP_NUMERO=p.VIP_NUMERO AND p.PHOTO_NUMERO=1 AND v.VIP_NUMERO="+data.NUMERO_VIP+";";
 
             console.log(sql);
