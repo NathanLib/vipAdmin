@@ -207,6 +207,8 @@ a  {
 .formulaire_photos fieldset > div {
     display: flex;
     margin: 20px 10px;
+    max-width: 980px;
+    flex-wrap: wrap;
 }
 .formulaire_photos fieldset > div > div {
     width: 175px;
@@ -236,7 +238,7 @@ a  {
 }
 /********/
 .photos_vip_suppr > figure {
-    margin : 0 25px 0 0;
+    margin : 0 25px 25px 0;
 }
 .photos_vip_suppr > figure img {
     height: 105px;
@@ -252,6 +254,7 @@ a  {
 }
 #buttonsSuppr {
     margin-left: -9px !important;
+    margin-top: -25px;
 }
 
 

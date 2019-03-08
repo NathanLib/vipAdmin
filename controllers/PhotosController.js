@@ -39,10 +39,14 @@ module.exports.InsertPhoto = function(request, response){
             return;
         }
 
-
         let infoPhotoVip = result[0][0];
 
-        model.insertPhotoVip(infoPhotoVip.maxIdPhoto, infoPhotoVip.VIP_NUMERO, dataForm, function(err,result) {});
+        if (infoPhotoVip.maxIdPhoto == null) {
+            model.insertPhotoVip(0, dataForm.VIP_NUMERO, dataForm, function(err,result) {});
+        }
+        else {
+            model.insertPhotoVip(infoPhotoVip.maxIdPhoto, infoPhotoVip.VIP_NUMERO, dataForm, function(err,result) {});
+        }
 
         response.render('ajoutVipsConfirmation', response);
     }
@@ -108,18 +112,41 @@ module.exports.DeletePhoto = function(request, response){
         let values = dataForm.aSupprimer;
 
         async.series([
+
             function(callback){
-            model.deletePhotoVip(values, dataForm.VIP_NUMERO, function(err,result) {callback(null, result)});
+                model.deletePhotoVip(values, dataForm.VIP_NUMERO, function(err,result) {callback(null, result)});
+            },
+
+            function(callback){
+                model.getPhotosVip(dataForm.VIP_NUMERO, function(err,result) {callback(null, result)});
+            }
+        ],
+
+        function(err, result){
+            if (err) {
+                console.log(err);
+                return;
+            }
+/*
+            var arrayNumPhoto = new Array();
+
+            for (var i = 0; i < result[1].length; i++) {
+                arrayNumPhoto.push(result[1][i].PHOTO_NUMERO);
+            }
+*/
+            if (result[1].length > 0) {
+                if (result[1].length > 1) {
+                    for (var i = values.length - 1; i >= 0; i--) {
+                        console.log(values[i]);
+
+                        model.updatePhotoNumber(values[i], dataForm.VIP_NUMERO, function(err,result) {});
+                    }
+                }
+                else {
+                    model.updatePhotoNumber(1, dataForm.VIP_NUMERO, function(err,result) {});
+                }
+            }
+
+            response.render('ajoutVipsConfirmation', response);
         }
-
-    ],
-
-    function(err, result){
-        if (err) {
-            console.log(err);
-            return;
-        }
-
-        response.render('ajoutVipsConfirmation', response);
-    }
-) } ; } ;
+    ) } ; } ;

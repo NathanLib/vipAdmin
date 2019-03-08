@@ -15,7 +15,7 @@ module.exports.getAllVips = function(callback) {
 module.exports.getPhotosVip = function(number,callback) {
     db.getConnection(function(err, connexion) {
         if (!err) {
-            let sql = "SELECT p.PHOTO_NUMERO, p.PHOTO_ADRESSE FROM photo p";
+            let sql = "SELECT p.PHOTO_NUMERO, p.PHOTO_ADRESSE, p.PHOTO_SUJET FROM photo p";
             sql = sql + " WHERE p.VIP_NUMERO="+number+";";
             //console.log(sql);
             connexion.query(sql, callback);
@@ -57,6 +57,20 @@ module.exports.deletePhotoVip = function(arrayNumPhoto, numeroVip, callback) {
     db.getConnection(function(err, connexion) {
         if (!err) {
             let sql = "DELETE FROM photo where PHOTO_NUMERO IN ("+arrayNumPhoto+") AND VIP_NUMERO="+numeroVip+";";
+
+            //console.log(sql);
+            connexion.query(sql, callback);
+            connexion.release();
+        }
+    });
+};
+
+module.exports.updatePhotoNumber = function(numeroPhoto, numeroVip, callback) {
+    db.getConnection(function(err, connexion) {
+        if (!err) {
+            let sql = "UPDATE photo"
+            sql = sql + " SET PHOTO_NUMERO = GREATEST(1, PHOTO_NUMERO - 1)"
+            sql = sql + " WHERE PHOTO_NUMERO>"+numeroPhoto+" AND VIP_NUMERO="+numeroVip+";";
 
             console.log(sql);
             connexion.query(sql, callback);
