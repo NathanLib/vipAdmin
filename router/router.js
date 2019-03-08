@@ -27,7 +27,10 @@ module.exports = function(app){
 
     // Photos
     app.get('/photos', ConnexionController.Verification, PhotosController.Ajout);
+    app.post('/photos/ajoutPhotos', ConnexionController.Verification, PhotosController.InsertPhoto);
+
     app.get('/photos/supprimer/:numero', ConnexionController.Verification, PhotosController.Supprimer);
+    app.post('/photos/supprimerPhotos', ConnexionController.Verification, PhotosController.DeletePhoto);
     //Fin accès vérifié
 
     // tout le reste

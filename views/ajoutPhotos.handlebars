@@ -1,7 +1,7 @@
 {{> menuPhotos}}
 
 <div class="formulaire_photos">
-    <form class="" action="" method="">
+    <form class="" action="/photos/ajoutPhotos" method="post">
         <fieldset>
             <legend> <b>Ajout d'une photo</b> </legend>
 
@@ -10,7 +10,7 @@
                     <p>Nom du vip :</p>
                 </div>
                 <div class="input_nom_ajout_photos">
-                    <select class="" name="vip">
+                    <select id="VIP_NUMERO" class="" name="VIP_NUMERO">
                         {{#each listVips}}
                         <option value="{{this.VIP_NUMERO}}">{{this.VIP_NOM}} {{this.VIP_PRENOM}}</option>
                         {{/each}}
@@ -23,7 +23,7 @@
                     <p>Adresse de la photo :</p>
                 </div>
                 <div class="input_parcours_image_ajout_photos">
-                    <input type="file" name="photo_address" value="">
+                    <input id="PHOTO_ADRESSE" type="file" name="PHOTO_ADRESSE" value="">
                 </div>
             </div>
 
@@ -32,7 +32,7 @@
                     <p>Titre :</p>
                 </div>
                 <div class="input_titre_image_ajout_photos">
-                    <input type="text" name="titre" value="">
+                    <input id="PHOTO_SUJET" type="text" name="PHOTO_SUJET" value="">
                 </div>
             </div>
 
@@ -41,7 +41,7 @@
                     <p>Un petit commentaire ?</p>
                 </div>
                 <div class="input_commentaire_image_ajout_photos">
-                    <textarea name="commentaire_photo" rows="8" cols="80"></textarea>
+                    <textarea id="PHOTO_COMMENTAIRE" name="PHOTO_COMMENTAIRE" rows="8" cols="80"></textarea>
                 </div>
             </div>
 

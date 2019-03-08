@@ -238,11 +238,11 @@ a  {
 .photos_vip_suppr > figure {
     margin : 0 25px 0 0;
 }
-.photos_vip_suppr > figure > img {
+.photos_vip_suppr > figure img {
     height: 105px;
 }
-.photos_vip_suppr > figure > figcaption:nth-last-child(1) {
-    margin-top: 8px;
+.photos_vip_suppr > figure > figcaption > label > figcaption {
+    margin-bottom: 8px;
 }
 .photos_vip_suppr input[type=checkbox] {
     vertical-align: middle;

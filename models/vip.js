@@ -58,11 +58,11 @@ module.exports.insertVip = function(data, callback) {
 module.exports.insertVipPhoto = function(numeroVip, data, callback) {
     db.getConnection(function (err, connexion) {
         if (!err) {
-            //Probleme avec le last insert id
+
             let sql = "INSERT INTO photo (PHOTO_NUMERO, VIP_NUMERO, PHOTO_SUJET, PHOTO_COMMENTAIRE, PHOTO_ADRESSE)";
             sql = sql + " VALUES (1, "+numeroVip+", '"+data.PHOTO_SUJET+"', '"+data.PHOTO_COMMENTAIRE+"', '"+data.PHOTO_ADRESSE+"');";
 
-            console.log(sql);
+            //console.log(sql);
 
             connexion.query(sql, callback);
             connexion.release();

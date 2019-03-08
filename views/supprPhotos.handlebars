@@ -1,7 +1,7 @@
 {{> menuPhotos}}
 
 <div class="formulaire_photos">
-    <form class="" action="" method="">
+    <form class="" action="/photos/supprimerPhotos" method="post">
         <fieldset>
             <legend> <b>Supprimer une photo</b> </legend>
 
@@ -11,7 +11,7 @@
                     <p>Choisir un vip :</p>
                 </div>
                 <div class="input_nom_suppr_photos">
-                    <select id="select_vip_suppr_photo" class="" name="nom" onchange="selectVipSupprPhoto(value)">
+                    <select id="select_vip_suppr_photo" class="" name="VIP_NUMERO" onchange="selectVipSupprPhoto(value)">
                         <option value="">- Liste des vips -</option>
                         {{#each listVips}}
                         <option value="{{this.VIP_NUMERO}}">{{this.VIP_NOM}} {{this.VIP_PRENOM}}</option>
@@ -25,7 +25,7 @@
                     <p>Sélection :</p>
                 </div>
                 <div class="input_nom_suppr_photos">
-                    <select id="select_vip_suppr_photo" class="" name="nom" onchange="selectVipSupprPhoto(value)">
+                    <select id="select_vip_suppr_photo" class="" name="VIP_NUMERO" onchange="selectVipSupprPhoto(value)">
                         {{#each listVips}}
                         {{#ifCond this.VIP_NUMERO '!=' ../numeroVip}}
                         <option value="{{this.VIP_NUMERO}}">{{this.VIP_NOM}} {{this.VIP_PRENOM}}</option>
@@ -42,12 +42,14 @@
             <div class="photos_vip_suppr">
                 {{#each photos}}
                 <figure>
-                    <img src="/images/vip/{{this.PHOTO_ADRESSE}}" alt="photo n° {{this.PHOTO_NUMERO}}">
                     <figcaption>
-                        {{this.PHOTO_ADRESSE}}
-                    </figcaption>
-                    <figcaption>
-                        <label><input type="checkbox" name="" value=""> Supprimer ?</label>
+                        <label>
+                            <img src="/images/vip/{{this.PHOTO_ADRESSE}}" alt="photo n° {{this.PHOTO_NUMERO}}">
+                            <figcaption>
+                                {{this.PHOTO_ADRESSE}}
+                            </figcaption>
+                            <input type="checkbox" name="aSupprimer" value="{{this.PHOTO_NUMERO}}"> Supprimer ?
+                        </label>
                     </figcaption>
                 </figure>
                 {{/each}}

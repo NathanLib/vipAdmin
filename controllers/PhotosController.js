@@ -19,8 +19,34 @@ module.exports.Ajout = function(request, response){
         response.listVips = result[0];
         response.render('ajoutPhotos', response);
     }
-);
-} ;
+); } ;
+
+module.exports.InsertPhoto = function(request, response){
+    response.title = 'PHOTOS Admin';
+
+    var dataForm = request.body;
+
+    async.series([
+        function(callback){
+            model.getMaxIdPhoto(dataForm.VIP_NUMERO, function(err,result) {callback(null, result)});
+        }
+
+    ],
+
+    function(err, result){
+        if (err) {
+            console.log(err);
+            return;
+        }
+
+
+        let infoPhotoVip = result[0][0];
+
+        model.insertPhotoVip(infoPhotoVip.maxIdPhoto, infoPhotoVip.VIP_NUMERO, dataForm, function(err,result) {});
+
+        response.render('ajoutVipsConfirmation', response);
+    }
+); } ;
 
 module.exports.Supprimer = function(request, response){
     response.title = 'PHOTOS Admin';
@@ -68,6 +94,32 @@ else {
 
         response.render('supprPhotos', response);
     }
-);
-}
-} ;
+); } } ;
+
+module.exports.DeletePhoto = function(request, response){
+    response.title = 'PHOTOS Admin';
+
+    var dataForm = request.body;
+
+    if (dataForm.aSupprimer === undefined) {
+        response.render('home', response);
+    }
+    else {
+        let values = dataForm.aSupprimer;
+
+        async.series([
+            function(callback){
+            model.deletePhotoVip(values, dataForm.VIP_NUMERO, function(err,result) {callback(null, result)});
+        }
+
+    ],
+
+    function(err, result){
+        if (err) {
+            console.log(err);
+            return;
+        }
+
+        response.render('ajoutVipsConfirmation', response);
+    }
+) } ; } ;
