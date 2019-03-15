@@ -1,0 +1,23 @@
+{{> menuPhotos}}
+
+<div class="confirmation">
+    {{#if addPhotoVip}}
+    <p>La photo du vip <b>{{addPhotoVip}}</b> a bien été ajouté !</p>
+    <br><br>
+    {{/if}}
+
+    {{#if aucunePhoto}}
+    <p>{{aucunePhoto}}</p>
+    <br><br>
+    {{/if}}
+
+    {{#if deletePhotoVip}}
+    {{#ifCond number '>' 1}}
+    <p>Les photos du vip <b>{{deletePhotoVip}}</b> ont été supprimé !</p>
+    <br><br>
+    {{else}}
+    <p>La photo du vip <b>{{deletePhotoVip}}</b> a été supprimé !</p>
+    <br><br>
+    {{/ifCond}}
+    {{/if}}
+</div>

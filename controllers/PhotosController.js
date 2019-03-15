@@ -26,11 +26,14 @@ module.exports.InsertPhoto = function(request, response){
 
     var dataForm = request.body;
 
-    async.series([
+    async.parallel([
         function(callback){
             model.getMaxIdPhoto(dataForm.VIP_NUMERO, function(err,result) {callback(null, result)});
-        }
+        },
 
+        function(callback){
+            model.getInfoVip(dataForm.VIP_NUMERO, function(err,result) {callback(null, result)});
+        }
     ],
 
     function(err, result){
@@ -48,7 +51,8 @@ module.exports.InsertPhoto = function(request, response){
             model.insertPhotoVip(infoPhotoVip.maxIdPhoto, infoPhotoVip.VIP_NUMERO, dataForm, function(err,result) {});
         }
 
-        response.render('ajoutVipsConfirmation', response);
+        response.addPhotoVip = result[1][0]['VIP_PRENOM'] + " " + result[1][0]['VIP_NOM'];
+        response.render('photosConfirmation', response);
     }
 ); } ;
 
@@ -106,20 +110,25 @@ module.exports.DeletePhoto = function(request, response){
     var dataForm = request.body;
 
     if (dataForm.aSupprimer === undefined) {
-        response.render('home', response);
+        response.aucunePhoto = "Veuillez sélectionner au moins une photo à supprimer avant de cliquer sur valider !";
+        response.render('photosConfirmation', response);
     }
     else {
         let values = dataForm.aSupprimer;
 
         async.series([
-
             function(callback){
                 model.deletePhotoVip(values, dataForm.VIP_NUMERO, function(err,result) {callback(null, result)});
             },
 
             function(callback){
                 model.getPhotosVip(dataForm.VIP_NUMERO, function(err,result) {callback(null, result)});
+            },
+
+            function(callback){
+                model.getInfoVip(dataForm.VIP_NUMERO, function(err,result) {callback(null, result)});
             }
+
         ],
 
         function(err, result){
@@ -127,26 +136,24 @@ module.exports.DeletePhoto = function(request, response){
                 console.log(err);
                 return;
             }
-/*
-            var arrayNumPhoto = new Array();
 
-            for (var i = 0; i < result[1].length; i++) {
-                arrayNumPhoto.push(result[1][i].PHOTO_NUMERO);
-            }
-*/
             if (result[1].length > 0) {
-                if (result[1].length > 1) {
-                    for (var i = values.length - 1; i >= 0; i--) {
-                        console.log(values[i]);
 
-                        model.updatePhotoNumber(values[i], dataForm.VIP_NUMERO, function(err,result) {});
-                    }
+                if (values.length > 1) {
+
+                    var valuesInverse = values.reverse();
+
+                    model.updatePhotoNumber(valuesInverse, dataForm.VIP_NUMERO, function(err,result) {});
                 }
                 else {
-                    model.updatePhotoNumber(1, dataForm.VIP_NUMERO, function(err,result) {});
-                }
-            }
 
-            response.render('ajoutVipsConfirmation', response);
-        }
-    ) } ; } ;
+                    model.updatePhotoNumberUnique(values, dataForm.VIP_NUMERO, function(err,result) {});
+
+                }
+
+                response.number = values.length;
+                response.deletePhotoVip = result[2][0]['VIP_PRENOM'] + " " + result[2][0]['VIP_NOM'];
+                response.render('photosConfirmation', response);
+
+            }
+        } ); } };

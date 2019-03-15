@@ -164,7 +164,7 @@ a  {
     max-height: 250px;
 }
 .parcours_input_image_modifier_vip {
-    min-width: 234px;
+    min-width: 240px;
 }
 .parcours_input_image_modifier_vip input[type=text] {
     margin-right: 10px;
@@ -179,6 +179,12 @@ a  {
     margin: 20px auto;
 }
 
+/* Page confirmation */
+.confirmation {
+    width: 1000px;
+    float: right;
+    text-align: left;
+}
 
 
 /* Page menuPhotos.handlbars */
@@ -253,10 +259,14 @@ a  {
     margin: 0;
 }
 #buttonsSuppr {
-    margin-left: -9px !important;
+    margin-left: -10px !important;
     margin-top: -25px;
+    display: flex;
 }
-
+.alertPhotoOfficielle {
+    width: 100% !important;
+    margin-bottom: 25px;
+}
 
 /* Page connexion.handlebars */
 .connexionHeader {

@@ -40,7 +40,38 @@
             <hr class="separateur">
 
             <div class="photos_vip_suppr">
+                {{#ifCond photos.length '==' 1}}
+                <div class="alertPhotoOfficielle">
+                    <p>
+                        <b>Attention : </b>
+                        vous ne pouvez pas supprimer la photo officielle d'un vip !
+                    </p>
+                </div>
+
                 {{#each photos}}
+                <figure>
+                    <figcaption>
+                        <label>
+                            <img src="/images/vip/{{this.PHOTO_ADRESSE}}" title="{{this.PHOTO_SUJET}}" alt="photo n° {{this.PHOTO_NUMERO}}">
+                            <figcaption>
+                                {{this.PHOTO_ADRESSE}}
+                            </figcaption>
+                        </label>
+                    </figcaption>
+                </figure>
+                {{/each}}
+
+                {{else}}
+
+                <div class="alertPhotoOfficielle">
+                    <p>
+                        <b>Attention : </b>
+                        si vous voulez modifier la photo officielle d'un vip, vous devez passer par la page modifier un vip !
+                    </p>
+                </div>
+
+                {{#each photos}}
+                {{#ifCond this.PHOTO_NUMERO '!=' 1}}
                 <figure>
                     <figcaption>
                         <label>
@@ -52,7 +83,10 @@
                         </label>
                     </figcaption>
                 </figure>
+                {{/ifCond}}
                 {{/each}}
+
+                {{/ifCond}}
             </div>
 
             <div id="buttonsSuppr" class="mesBoutons">
@@ -64,7 +98,6 @@
                 </div>
             </div>
             {{/ifCond}}
-
         </fieldset>
     </form>
 </div>
@@ -74,5 +107,4 @@ function selectVipSupprPhoto(value) {
     valueVip = document.getElementById("select_vip_suppr_photo").value;
     window.location.href = "http://localhost:1903/photos/supprimer/" + valueVip;
 }
-
 </script>

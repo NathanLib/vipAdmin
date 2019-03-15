@@ -46,7 +46,8 @@ module.exports.AjoutVip = function(request, response){
 
         model.insertVipPhoto(result[0].insertId, dataForm, function(err,result) {});
 
-        response.render('ajoutVipsConfirmation', response);
+        response.addVip = dataForm.VIP_PRENOM + " " + dataForm.VIP_NOM;
+        response.render('vipsConfirmation', response);
     }
 );
 } ;
@@ -121,8 +122,8 @@ module.exports.UpdateDetail = function(request, response){
             return;
         }
 
-        //response.insert = result[0];
-        response.render('ajoutVipsConfirmation', response);
+        response.updateVip = dataForm.VIP_PRENOM + " " + dataForm.VIP_NOM ;
+        response.render('vipsConfirmation', response);
     }
 );
 } ;
