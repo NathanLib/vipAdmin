@@ -1,7 +1,7 @@
 {{> menuVips}}
 
 <div class="formulaire_vips">
-    <form class="" action="" method="">
+    <form class="" action="/vips/supprimerVip" method="post">
         <fieldset>
             <legend> <b>Supprimer VIPs</b> </legend>
 
@@ -10,7 +10,7 @@
                     <p>Nom du vip :</p>
                 </div>
                 <div class="input_nom_modif_vip">
-                    <select class="" name="nom">
+                    <select class="" name="VIP_NUMERO">
                         {{#each listVips}}
                         <option value="{{this.VIP_NUMERO}}">{{this.VIP_NOM}} {{this.VIP_PRENOM}}</option>
                         {{/each}}

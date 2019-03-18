@@ -37,7 +37,6 @@ let handlebars  = require('./helpers/handlebars.js')(exphbs); //emplacement des 
 
 app.engine('handlebars', handlebars.engine);
 
-
 // chargement du routeur
 require('./router/router')(app);
 

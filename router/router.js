@@ -24,6 +24,7 @@ module.exports = function(app){
     app.post('/vips/modifier/:numero/update', ConnexionController.Verification, VipController.UpdateDetail);
 
     app.get('/vips/supprimer', ConnexionController.Verification, VipController.Supprimer);
+    app.post('/vips/supprimerVip', ConnexionController.Verification, VipController.SupprimerVip);
 
     // Photos
     app.get('/photos', ConnexionController.Verification, PhotosController.Ajout);
@@ -36,5 +37,4 @@ module.exports = function(app){
     // tout le reste
     app.get('*', HomeController.NotFound);
     app.post('*', HomeController.NotFound);
-
 };

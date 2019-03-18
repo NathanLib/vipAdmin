@@ -56,7 +56,7 @@ module.exports.insertPhotoVip = function(idPhoto, numeroVip, data, callback) {
 
         if (!err) {
             let sql = "INSERT INTO photo (PHOTO_NUMERO, VIP_NUMERO, PHOTO_SUJET, PHOTO_COMMENTAIRE, PHOTO_ADRESSE)";
-            sql = sql + " VALUES ("+idPhoto+", "+numeroVip+", '"+data.PHOTO_SUJET+"', '"+data.PHOTO_COMMENTAIRE+"', '"+data.PHOTO_ADRESSE+"');";
+            sql = sql + " VALUES ("+idPhoto+", "+numeroVip+", '"+data.PHOTO_SUJET.replace(/'/g, "\\'")+"', '"+data.PHOTO_COMMENTAIRE.replace(/'/g, "\\'")+"', '"+data.PHOTO_ADRESSE+"');";
 
             //console.log(sql);
             connexion.query(sql, callback);

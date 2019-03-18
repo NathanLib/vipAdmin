@@ -7,10 +7,6 @@ module.exports.Ajout = function(request, response){
     async.parallel([
         function(callback){
             model.getAllNationalites(function(err,result) {callback(null, result)});
-        },
-
-        function(callback){
-            model.getAllNationalites(function(err,result) {callback(null, result)});
         }
     ],
 
@@ -147,6 +143,34 @@ module.exports.Supprimer = function(request, response){
 
         response.listVips = result[0];
         response.render('supprVips', response);
+    }
+);
+} ;
+
+module.exports.SupprimerVip = function(request, response){
+    response.title = 'VIPS Admin';
+
+    var dataForm = request.body;
+
+    async.series([
+        function(callback){
+            model.getInfoVip(dataForm.VIP_NUMERO, function(err,result) {callback(null, result)});
+        },
+        function(callback){
+            model.deleteVip(dataForm.VIP_NUMERO, function(err,result) {callback(null, result)});
+        },
+
+
+    ],
+
+    function(err, result){
+        if (err) {
+            console.log(err);
+            return;
+        }
+
+        response.deleteVip = result[0][0]['VIP_PRENOM'] + " " + result[0][0]['VIP_NOM'];    
+        response.render('vipsConfirmation', response);
     }
 );
 } ;
