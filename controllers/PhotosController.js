@@ -156,4 +156,6 @@ module.exports.DeletePhoto = function(request, response){
                 response.render('photosConfirmation', response);
 
             }
-        } ); } };
+        }
+    );
+} };

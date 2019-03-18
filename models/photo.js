@@ -78,6 +78,7 @@ module.exports.deletePhotoVip = function(arrayNumPhoto, numeroVip, callback) {
     });
 };
 
+// Réorganisation des numéros des photos dans la BD
 module.exports.updatePhotoNumber = function(numeroPhoto, numeroVip, callback) {
     db.getConnection(function(err, connexion) {
         if (!err) {
