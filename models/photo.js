@@ -49,14 +49,14 @@ module.exports.getMaxIdPhoto = function(number,callback) {
     });
 };
 
-module.exports.insertPhotoVip = function(idPhoto, numeroVip, data, callback) {
+module.exports.insertPhotoVip = function(idPhoto, numeroVip, data, image, callback) {
     db.getConnection(function(err, connexion) {
 
         idPhoto = idPhoto + 1;
 
         if (!err) {
             let sql = "INSERT INTO photo (PHOTO_NUMERO, VIP_NUMERO, PHOTO_SUJET, PHOTO_COMMENTAIRE, PHOTO_ADRESSE)";
-            sql = sql + " VALUES ("+idPhoto+", "+numeroVip+", '"+data.PHOTO_SUJET.replace(/'/g, "\\'")+"', '"+data.PHOTO_COMMENTAIRE.replace(/'/g, "\\'")+"', '"+data.PHOTO_ADRESSE+"');";
+            sql = sql + " VALUES ("+idPhoto+", "+numeroVip+", '"+data.PHOTO_SUJET.replace(/'/g, "\\'")+"', '"+data.PHOTO_COMMENTAIRE.replace(/'/g, "\\'")+"', '"+image+"');";
 
             //console.log(sql);
             connexion.query(sql, callback);

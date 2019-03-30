@@ -11,8 +11,8 @@
     "express": "^4.16.4",
     "express-handlebars": "*",
     "express-session": ">1.12",
-    "formidable": "^1.2.1",
     "moment": "^2.24.0",
+    "multer": "^1.4.1",
     "mysql": "2.16.0",
     "string": ">3.0",
     "unidecode": "*"

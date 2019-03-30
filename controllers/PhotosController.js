@@ -25,6 +25,7 @@ module.exports.InsertPhoto = function(request, response){
     response.title = 'PHOTOS Admin';
 
     var dataForm = request.body;
+    var image = request.file.filename;
 
     async.parallel([
         function(callback){
@@ -45,10 +46,10 @@ module.exports.InsertPhoto = function(request, response){
         let infoPhotoVip = result[0][0];
 
         if (infoPhotoVip.maxIdPhoto == null) {
-            model.insertPhotoVip(0, dataForm.VIP_NUMERO, dataForm, function(err,result) {});
+            model.insertPhotoVip(0, dataForm.VIP_NUMERO, dataForm, image, function(err,result) {});
         }
         else {
-            model.insertPhotoVip(infoPhotoVip.maxIdPhoto, infoPhotoVip.VIP_NUMERO, dataForm, function(err,result) {});
+            model.insertPhotoVip(infoPhotoVip.maxIdPhoto, infoPhotoVip.VIP_NUMERO, dataForm, image, function(err,result) {});
         }
 
         response.addPhotoVip = result[1][0]['VIP_PRENOM'] + " " + result[1][0]['VIP_NOM'];

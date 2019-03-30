@@ -26,6 +26,7 @@ module.exports.AjoutVip = function(request, response){
     response.title = 'VIPS Admin';
 
     var dataForm = request.body;
+    var image = request.file.filename;
 
     async.series([
         function(callback){
@@ -40,7 +41,7 @@ module.exports.AjoutVip = function(request, response){
             return;
         }
 
-        model.insertVipPhoto(result[0].insertId, dataForm, function(err,result) {});
+        model.insertVipPhoto(result[0].insertId, dataForm, image, function(err,result) {});
 
         response.addVip = dataForm.VIP_PRENOM + " " + dataForm.VIP_NOM;
         response.render('vipsConfirmation', response);
@@ -105,10 +106,11 @@ module.exports.UpdateDetail = function(request, response){
     response.title = 'VIPS Admin';
 
     var dataForm = request.body;
+    var image = request.file.filename;
 
     async.series([
         function(callback){
-            model.updateInfoVip(dataForm, function(err,result) {callback(null, result)});
+            model.updateInfoVip(dataForm, image, function(err,result) {callback(null, result)});
         }
     ],
 
@@ -169,7 +171,7 @@ module.exports.SupprimerVip = function(request, response){
             return;
         }
 
-        response.deleteVip = result[0][0]['VIP_PRENOM'] + " " + result[0][0]['VIP_NOM'];    
+        response.deleteVip = result[0][0]['VIP_PRENOM'] + " " + result[0][0]['VIP_NOM'];
         response.render('vipsConfirmation', response);
     }
 );

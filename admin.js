@@ -3,7 +3,8 @@ let express         = require('express'),
     cookieParser    = require('cookie-parser'),
     bodyParser      = require('body-parser'), //pour récupérer les résultats des post
     http            = require('http'),
-    path            = require('path');
+    path            = require('path'),
+    multer          = require('multer');
 
 let app = express();
 

@@ -2,6 +2,7 @@ let HomeController = require('./../controllers/HomeController');
 let VipController = require('./../controllers/VipController');
 let PhotosController = require('./../controllers/PhotosController');
 let ConnexionController = require('./../controllers/ConnexionController');
+let UploadController = require('./../controllers/UploadController');
 
 // Routes
 module.exports = function(app){
@@ -18,17 +19,17 @@ module.exports = function(app){
     //Accès vérifié
     // VIP
     app.get('/vips', ConnexionController.Verification, VipController.Ajout);
-    app.post('/vips/ajoutVip', ConnexionController.Verification, VipController.AjoutVip);
+    app.post('/vips/ajoutVip', ConnexionController.Verification, UploadController.UploadImage,VipController.AjoutVip);
 
     app.get('/vips/modifier/:numero', ConnexionController.Verification, VipController.ModifierDetail);
-    app.post('/vips/modifier/:numero/update', ConnexionController.Verification, VipController.UpdateDetail);
+    app.post('/vips/modifier/:numero/update', ConnexionController.Verification, UploadController.UploadImage,VipController.UpdateDetail);
 
     app.get('/vips/supprimer', ConnexionController.Verification, VipController.Supprimer);
     app.post('/vips/supprimerVip', ConnexionController.Verification, VipController.SupprimerVip);
 
     // Photos
     app.get('/photos', ConnexionController.Verification, PhotosController.Ajout);
-    app.post('/photos/ajoutPhotos', ConnexionController.Verification, PhotosController.InsertPhoto);
+    app.post('/photos/ajoutPhotos', ConnexionController.Verification, UploadController.UploadImage, PhotosController.InsertPhoto);
 
     app.get('/photos/supprimer/:numero', ConnexionController.Verification, PhotosController.Supprimer);
     app.post('/photos/supprimerPhotos', ConnexionController.Verification, PhotosController.DeletePhoto);

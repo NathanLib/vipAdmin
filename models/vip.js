@@ -59,7 +59,7 @@ module.exports.insertVip = function(data, callback) {
             let sql = "INSERT INTO vip (NATIONALITE_NUMERO, VIP_NOM, VIP_PRENOM, VIP_SEXE, VIP_NAISSANCE, VIP_TEXTE, VIP_DATE_INSERTION)";
             sql = sql + " VALUES ("+data.NATIONALITE_NUMERO+", UPPER('"+data.VIP_NOM+"'), '"+data.VIP_PRENOM+"', '"+data.VIP_SEXE+"', '"+data.VIP_NAISSANCE+"', '"+data.VIP_TEXTE.replace(/'/g, "\\'")+"', '"+moment().format('YYYY-MM-DD hh:mm:ss')+"');";
 
-            console.log(sql);
+            //console.log(sql);
 
             connexion.query(sql, callback);
             connexion.release();
@@ -67,12 +67,12 @@ module.exports.insertVip = function(data, callback) {
     });
 }
 
-module.exports.insertVipPhoto = function(numeroVip, data, callback) {
+module.exports.insertVipPhoto = function(numeroVip, data, image, callback) {
     db.getConnection(function (err, connexion) {
         if (!err) {
 
             let sql = "INSERT INTO photo (PHOTO_NUMERO, VIP_NUMERO, PHOTO_SUJET, PHOTO_COMMENTAIRE, PHOTO_ADRESSE)";
-            sql = sql + " VALUES (1, "+numeroVip+", '"+data.PHOTO_SUJET.replace(/'/g, "\\'")+"', '"+data.PHOTO_COMMENTAIRE.replace(/'/g, "\\'")+"', '"+data.PHOTO_ADRESSE+"');";
+            sql = sql + " VALUES (1, "+numeroVip+", '"+data.PHOTO_SUJET.replace(/'/g, "\\'")+"', '"+data.PHOTO_COMMENTAIRE.replace(/'/g, "\\'")+"', '"+image+"');";
 
             //console.log(sql);
 
@@ -82,14 +82,14 @@ module.exports.insertVipPhoto = function(numeroVip, data, callback) {
     });
 }
 
-module.exports.updateInfoVip = function(data, callback) {
+module.exports.updateInfoVip = function(data, image, callback) {
     db.getConnection(function (err, connexion) {
         if (!err) {
-            // WARNING: Demander pour l'échapement des caractères : \'
+
             let sql = "UPDATE vip v, photo p";
             sql = sql + " SET v.NATIONALITE_NUMERO="+data.NATIONALITE_NUMERO+", v.VIP_NOM=UPPER('"+data.VIP_NOM+"'), v.VIP_PRENOM='"+data.VIP_PRENOM+"', v.VIP_SEXE='"+data.VIP_SEXE+"',";
             sql = sql + " v.VIP_NAISSANCE='"+data.VIP_NAISSANCE+"', v.VIP_TEXTE='"+data.VIP_TEXTE.replace(/'/g, "\\'")+"', p.PHOTO_SUJET='"+data.PHOTO_SUJET+"',";
-            sql = sql + " p.PHOTO_COMMENTAIRE='"+data.PHOTO_COMMENTAIRE.replace(/'/g, "\\'")+"', p.PHOTO_ADRESSE='"+data.PHOTO_ADRESSE+"'";
+            sql = sql + " p.PHOTO_COMMENTAIRE='"+data.PHOTO_COMMENTAIRE.replace(/'/g, "\\'")+"', p.PHOTO_ADRESSE='"+image+"'";
             sql = sql + " WHERE v.VIP_NUMERO=p.VIP_NUMERO AND p.PHOTO_NUMERO=1 AND v.VIP_NUMERO="+data.NUMERO_VIP+";";
 
             //console.log(sql);

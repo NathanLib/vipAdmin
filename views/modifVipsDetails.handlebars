@@ -1,7 +1,7 @@
 {{> menuVips}}
 
 <div class="formulaire_vips">
-    <form class="" action="/vips/modifier/{{numeroVip}}/update" method="post">
+    <form class="" action="/vips/modifier/{{numeroVip}}/update" enctype="multipart/form-data" method="post">
         <fieldset>
             <legend> <b>Modifier VIPs</b> </legend>
 
@@ -118,7 +118,7 @@
                 <div class="input_image_modifiert_vip">
                     <div class="parcours_input_image_modifier_vip">
                         <input id="PHOTO_ADRESSE" type="text" name="PHOTO_ADRESSE" value="{{details.PHOTO_ADRESSE}}">
-                        <input id="new_photo_address" type="file" name="new_photo_address" value="" accept=".jpg, .jpeg, .png" oninput="getValueAddress()">
+                        <input id="new_photo_address" type="file" name="PHOTO_ADRESSE" value="" accept=".jpg, .jpeg, .png" oninput="getValueAddress()">
                     </div>
 
                     <div class="sujets_input_image_modifier_vip">
