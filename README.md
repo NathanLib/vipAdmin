@@ -1,5 +1,4 @@
 # S I X V O I X
-<<<<<<< HEAD
 =======
 Structure de base pour l'application SixVoix de l'IUT en Node.js.<br />
 Le fichier vip.sql vous permettra de créer votre base vip.<br />
@@ -7,7 +6,7 @@ Vous aurez aussi un jeu d'essai (réaliste mais pas exact).<br />
 <b>(Some small jokes ☺ )</b><br />
 
 Pour démarrer le serveur, taper "node app".<br />
-Le serveur sera à l'écoute du port 6800.<br /><br />
+Le serveur sera à l'écoute du port <b>1903</b>.<br /><br />
 Le fichier config.db contient les paramètres pour la base MySQL<br />
 Si vous le modifiez merci de le remettre aux valeurs initiales avant de rendre votre travail <br /><br /><br />
 
